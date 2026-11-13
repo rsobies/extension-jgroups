@@ -19,7 +19,7 @@
 
     <groupId>org.axonframework.extensions.jgroups</groupId>
     <artifactId>axon-jgroups-parent</artifactId>
-    <version>4.12.1-SNAPSHOT</version>
+    <version>4.12.1-vt</version>
     <modules>
         <module>jgroups</module>
         <module>jgroups-spring-boot-autoconfigure</module>
@@ -40,10 +40,10 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/AxonFramework/extension-jgroups/issues</url>
-    </issueManagement>
+<!--    <issueManagement>-->
+<!--        <system>GitHub</system>-->
+<!--        <url>https://github.com/AxonFramework/extension-jgroups/issues</url>-->
+<!--    </issueManagement>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,7 +53,7 @@
         </sonar.coverage.jacoco.xmlReportPaths>
 
         <axon.version>4.12.0</axon.version>
-        <jgroups.version>5.5.2.Final</jgroups.version>
+        <jgroups.version>5.5.8.Final</jgroups.version>
 
         <spring.version>5.3.39</spring.version>
         <spring.boot.version>2.7.18</spring.boot.version>
@@ -69,7 +69,7 @@
         <junit.jupiter.version>5.13.3</junit.jupiter.version>
         <mockito.version>4.11.0</mockito.version>
         <!-- Build / Plugin -->
-        <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
+<!--        <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>-->
         <jacoco-maven.version>0.8.13</jacoco-maven.version>
         <maven-assembly.version>3.7.1</maven-assembly.version>
         <maven-clean.version>3.5.0</maven-clean.version>
@@ -84,6 +84,14 @@
         <maven-surefire.version>2.22.2</maven-surefire.version>
         <maven-resources.version>3.3.1</maven-resources.version>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>rsobies</name>
+            <url>https://maven.pkg.github.com/rsobies/extension-jgroups</url>
+        </repository>
+    </distributionManagement>
+
 
     <dependencies>
         <!-- Testing -->
@@ -304,54 +312,54 @@
                 </configuration>
             </plugin>
             <!-- deploy -->
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>${central-publishing-maven-plugin.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <publishingServerId>central</publishingServerId>
-                </configuration>
-            </plugin>
-            <plugin>
-                <!-- just to make sure deployed artifacts are always built (and tested) using JDK 8+ -->
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven-enforcer.version}</version>
-                <executions>
-                    <execution>
-                        <id>enforce-java</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireJavaVersion>
-                                    <version>1.8</version>
-                                </requireJavaVersion>
-                                <requireMavenVersion>
-                                    <version>3.5</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>${maven-release.version}</version>
-                <configuration>
-                    <!-- prepare goal configuration -->
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <pushChanges>false</pushChanges>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <!-- perform goal configuration -->
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <localCheckout>true</localCheckout>
-                    <releaseProfiles>javadoc,sources,sign</releaseProfiles>
-                    <tagNameFormat>axon-jgroups-@{project.version}</tagNameFormat>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.sonatype.central</groupId>-->
+<!--                <artifactId>central-publishing-maven-plugin</artifactId>-->
+<!--                <version>${central-publishing-maven-plugin.version}</version>-->
+<!--                <extensions>true</extensions>-->
+<!--                <configuration>-->
+<!--                    <publishingServerId>central</publishingServerId>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                &lt;!&ndash; just to make sure deployed artifacts are always built (and tested) using JDK 8+ &ndash;&gt;-->
+<!--                <artifactId>maven-enforcer-plugin</artifactId>-->
+<!--                <version>${maven-enforcer.version}</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>enforce-java</id>-->
+<!--                        <phase>deploy</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>enforce</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <rules>-->
+<!--                                <requireJavaVersion>-->
+<!--                                    <version>1.8</version>-->
+<!--                                </requireJavaVersion>-->
+<!--                                <requireMavenVersion>-->
+<!--                                    <version>3.5</version>-->
+<!--                                </requireMavenVersion>-->
+<!--                            </rules>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <artifactId>maven-release-plugin</artifactId>-->
+<!--                <version>${maven-release.version}</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; prepare goal configuration &ndash;&gt;-->
+<!--                    <mavenExecutorId>forked-path</mavenExecutorId>-->
+<!--                    <pushChanges>false</pushChanges>-->
+<!--                    <autoVersionSubmodules>true</autoVersionSubmodules>-->
+<!--                    &lt;!&ndash; perform goal configuration &ndash;&gt;-->
+<!--                    <mavenExecutorId>forked-path</mavenExecutorId>-->
+<!--                    <localCheckout>true</localCheckout>-->
+<!--                    <releaseProfiles>javadoc,sources,sign</releaseProfiles>-->
+<!--                    <tagNameFormat>axon-jgroups-@{project.version}</tagNameFormat>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>${maven-resources.version}</version>

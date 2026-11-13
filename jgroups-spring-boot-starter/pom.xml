@@ -26,7 +26,7 @@
 
     <groupId>org.axonframework.extensions.jgroups</groupId>
     <artifactId>axon-jgroups-spring-boot-starter</artifactId>
-    <version>4.12.1-SNAPSHOT</version>
+    <version>4.12.1-vt</version>
 
     <name>Axon Framework JGroups Extension - Spring Boot Starter</name>
     <description>Spring Boot Starter module for the JGroups Extension of Axon Framework</description>
@@ -85,7 +85,13 @@
             </build>
         </profile>
     </profiles>
-
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>rsobies</name>
+            <url>https://maven.pkg.github.com/rsobies/extension-jgroups</url>
+        </repository>
+    </distributionManagement>
     <build>
         <pluginManagement>
             <plugins>
@@ -107,15 +113,15 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.8.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <publishingServerId>central</publishingServerId>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.sonatype.central</groupId>-->
+<!--                <artifactId>central-publishing-maven-plugin</artifactId>-->
+<!--                <version>0.8.0</version>-->
+<!--                <extensions>true</extensions>-->
+<!--                <configuration>-->
+<!--                    <publishingServerId>central</publishingServerId>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.0</version>
